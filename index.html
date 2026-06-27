@@ -8,6 +8,7 @@
       name="description"
       content="ヨガ、ピラティス、整体、パーソナルトレーナー向け。体験会や個人サービスの案内文を、1ページ告知HTMLとSNS投稿3本に整えます。初回モニター3,000円。"
     />
+    <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"%3E%3Crect width="16" height="16" rx="3" fill="%234f7a63"/%3E%3Cpath d="M4 8.2 6.6 11 12 5" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E' />
     <style>
       :root {
         --ink: #20322b;
@@ -415,6 +416,21 @@
         background: rgba(255, 255, 255, 0.06);
       }
 
+      .contact-list {
+        display: grid;
+        gap: 8px;
+        margin: 14px 0 18px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .contact-list li {
+        border-left: 4px solid var(--sun);
+        padding: 7px 10px;
+        background: rgba(255, 255, 255, 0.08);
+        font-weight: 800;
+      }
+
       .contact code {
         white-space: normal;
         color: #ffe0b4;
@@ -543,7 +559,7 @@
             <article class="step">
               <span>1</span>
               <h3>ヒアリング</h3>
-              <p>フォームに、告知したい内容、日時、料金、申し込み方法、今ある案内文を入力します。</p>
+              <p>フォームまたはDMテンプレートに、告知したい内容、日時、料金、申し込み方法、今ある案内文を入力します。</p>
             </article>
             <article class="step">
               <span>2</span>
@@ -627,12 +643,21 @@
         <div class="wrap">
           <div>
             <h2>申し込み方法</h2>
-            <p>まずはXのDMで「告知ページ制作に興味があります」と送ってください。</p>
+            <p>まずはXまたはInstagramのDMで「告知ページ制作に興味があります」と送ってください。</p>
           </div>
           <div class="contact-box">
             <p><strong>送る内容</strong></p>
-            <p><code>体験会/サービス名、今ある案内文、希望納期、SNSで使いたい媒体</code></p>
-            <p>その後、Googleフォームをお送りします。内容確認後、PayPayまたは銀行振込で入金確認してから制作開始します。</p>
+            <ul class="contact-list">
+              <li>体験会/サービス名</li>
+              <li>今ある案内文</li>
+              <li>日時、場所、料金、申し込み方法</li>
+              <li>希望納期、SNSで使いたい媒体</li>
+            </ul>
+            <p>Googleフォームが使えない場合は、申込テンプレートをDMに貼って送ってください。</p>
+            <div class="actions">
+              <a class="button primary" href="apply/index.html">申込テンプレートを開く</a>
+            </div>
+            <p>内容確認後、PayPayまたは銀行振込で入金確認してから制作開始します。</p>
           </div>
         </div>
       </section>

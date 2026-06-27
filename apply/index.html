@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>申込テンプレート | AI告知ページ制作</title>
+    <meta
+      name="description"
+      content="AI告知ページ制作の申込時にDMで送る内容。体験会、講座、個人サービスの告知ページ制作に必要な情報をまとめています。"
+    />
+    <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"%3E%3Crect width="16" height="16" rx="3" fill="%234f7a63"/%3E%3Cpath d="M4 8.2 6.6 11 12 5" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E' />
+    <style>
+      :root {
+        --ink: #20322b;
+        --muted: #68766f;
+        --paper: #fffef9;
+        --mist: #edf6ef;
+        --line: #dce5dc;
+        --green: #4f7a63;
+        --coral: #ef6848;
+        --sun: #f2bd54;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family:
+          "Hiragino Sans",
+          "Yu Gothic",
+          "Noto Sans JP",
+          system-ui,
+          sans-serif;
+        line-height: 1.75;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      header {
+        padding: 24px clamp(20px, 5vw, 60px);
+        color: white;
+        background: var(--ink);
+      }
+
+      .brand {
+        display: inline-flex;
+        margin-bottom: 28px;
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.75fr);
+        gap: clamp(28px, 5vw, 64px);
+        align-items: end;
+      }
+
+      h1,
+      h2,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 11ch;
+        margin-bottom: 18px;
+        font-size: clamp(2.7rem, 7vw, 6.2rem);
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+
+      .hero p {
+        max-width: 720px;
+        margin-bottom: 0;
+        color: #eaf5ef;
+        font-size: 1.08rem;
+        font-weight: 800;
+      }
+
+      .price-note {
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 8px;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .price-note strong {
+        display: block;
+        margin-bottom: 8px;
+        color: #ffe4b5;
+        font-size: 1.25rem;
+      }
+
+      main {
+        padding: clamp(34px, 6vw, 76px) clamp(20px, 5vw, 60px);
+      }
+
+      .wrap {
+        width: min(1100px, 100%);
+        margin: 0 auto;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
+        gap: 28px;
+        align-items: start;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: clamp(18px, 3vw, 28px);
+        background: white;
+      }
+
+      .panel.mist {
+        background: var(--mist);
+      }
+
+      h2 {
+        margin-bottom: 16px;
+        font-size: clamp(1.6rem, 3vw, 2.55rem);
+        line-height: 1.18;
+        letter-spacing: 0;
+      }
+
+      .steps {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .steps li {
+        display: grid;
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 12px;
+        align-items: start;
+      }
+
+      .steps span {
+        display: inline-flex;
+        width: 34px;
+        height: 34px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: white;
+        background: var(--green);
+        font-weight: 900;
+      }
+
+      .template {
+        width: 100%;
+        min-height: 540px;
+        resize: vertical;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 16px;
+        color: var(--ink);
+        background: #fbfcf8;
+        font: inherit;
+        line-height: 1.65;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .button,
+      button {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 11px 16px;
+        color: white;
+        background: var(--coral);
+        font: inherit;
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .button.secondary {
+        border-color: var(--green);
+        color: var(--green);
+        background: white;
+      }
+
+      .note {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--green);
+        font-weight: 900;
+      }
+
+      .status::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--sun);
+      }
+
+      footer {
+        padding: 22px clamp(20px, 5vw, 60px);
+        color: var(--muted);
+        background: #f5f7f2;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 860px) {
+        .hero,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          max-width: 9ch;
+        }
+
+        .template {
+          min-height: 620px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="../index.html">AI告知ページ制作</a>
+      <div class="hero">
+        <div>
+          <h1>申込テンプレート</h1>
+          <p>Googleフォームが使えない場合でも、この内容をDMに貼れば制作に必要な情報を送れます。</p>
+        </div>
+        <div class="price-note">
+          <strong>初回モニター 3,000円</strong>
+          <p>必要情報がそろってから3営業日。修正1回まで。入金確認後に制作開始します。</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap grid">
+        <section class="panel mist">
+          <h2>送る前の確認</h2>
+          <ul class="steps">
+            <li><span>1</span><div>今ある案内文をそのまま貼る。整っていなくても大丈夫です。</div></li>
+            <li><span>2</span><div>日時、場所、料金、申し込み方法は未定なら「未定」と書く。</div></li>
+            <li><span>3</span><div>画像制作、予約フォーム、決済機能、ロゴ制作は今回の3,000円には含まれません。</div></li>
+            <li><span>4</span><div>内容確認後、支払い方法を案内します。入金確認後に制作開始します。</div></li>
+          </ul>
+        </section>
+
+        <section class="panel">
+          <h2>DMに貼る内容</h2>
+          <textarea id="template" class="template">告知ページ制作に申し込みたいです。
+
+1. お名前または活動名:
+2. 連絡先:
+3. X、Instagram、note、WebサイトなどのURL:
+4. 告知したい講座、体験会、イベント、サービス名:
+5. 誰に向けたものですか:
+6. 参加者/お客様にどうなってほしいですか:
+7. 日時:
+8. 場所またはオンライン実施方法:
+9. 料金:
+10. 定員:
+11. 申し込み方法:
+12. 申込締切:
+13. 今ある案内文:
+14. 参考にしたい雰囲気やURL:
+15. SNS投稿を使いたい媒体:
+16. 絶対に入れたい文言:
+17. 入れてはいけない表現:
+18. 希望納期:
+19. 一番困っていること:
+20. 実績掲載について、納品後に相談してもよいですか:
+
+確認事項:
+- 3,000円に含まれる範囲は、1ページ告知HTML、SNS投稿3本、修正1回まで
+- 公開作業、予約フォーム、決済機能、画像制作、ロゴ制作、企画相談は別料金
+- 制作開始は前払い確認後
+- 納期は必要情報がそろってから3営業日
+- 納品後の大幅な方向転換は別料金</textarea>
+          <div class="actions">
+            <button id="copyButton">テンプレートをコピー</button>
+            <a class="button secondary" href="../index.html#contact">サービスページへ戻る</a>
+          </div>
+          <p id="copyStatus" class="note">コピー後、XまたはInstagramのDMに貼って送ってください。</p>
+        </section>
+      </div>
+    </main>
+
+    <footer>このページは、申込時に必要な情報を送るためのテンプレートです。</footer>
+
+    <script>
+      const button = document.querySelector("#copyButton");
+      const template = document.querySelector("#template");
+      const status = document.querySelector("#copyStatus");
+
+      button.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(template.value);
+        status.textContent = "コピーしました。DMに貼って送ってください。";
+        status.className = "status";
+      });
+    </script>
+  </body>
+</html>
