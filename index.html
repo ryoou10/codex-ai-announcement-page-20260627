@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI告知ページ制作 | 1ページ告知HTML + SNS投稿3本</title>
+    <meta
+      name="description"
+      content="ヨガ、ピラティス、整体、パーソナルトレーナー向け。体験会や個人サービスの案内文を、1ページ告知HTMLとSNS投稿3本に整えます。初回モニター3,000円。"
+    />
+    <style>
+      :root {
+        --ink: #20322b;
+        --ink-2: #31443b;
+        --muted: #68766f;
+        --paper: #fffef9;
+        --mist: #edf6ef;
+        --mint: #8dbc9d;
+        --mint-deep: #4f7a63;
+        --coral: #ef6848;
+        --sun: #f2bd54;
+        --line: #dce5dc;
+        --shadow: 0 24px 70px rgba(32, 50, 43, 0.16);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family:
+          "Hiragino Sans",
+          "Yu Gothic",
+          "Noto Sans JP",
+          system-ui,
+          sans-serif;
+        line-height: 1.75;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        position: fixed;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 18px clamp(20px, 4vw, 56px);
+        color: white;
+        background: linear-gradient(180deg, rgba(32, 50, 43, 0.68), rgba(32, 50, 43, 0));
+      }
+
+      .brand {
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 0.92rem;
+        font-weight: 800;
+      }
+
+      .nav a {
+        text-decoration: none;
+      }
+
+      .hero {
+        min-height: 88vh;
+        display: grid;
+        align-items: end;
+        padding: 96px clamp(20px, 4vw, 56px) clamp(42px, 7vh, 76px);
+        color: white;
+        background:
+          linear-gradient(90deg, rgba(32, 50, 43, 0.84), rgba(32, 50, 43, 0.38) 54%, rgba(32, 50, 43, 0.2)),
+          url("https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=1800&q=82")
+            center / cover;
+      }
+
+      .hero-inner {
+        width: min(980px, 100%);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 12ch;
+        margin-bottom: 22px;
+        font-size: clamp(3.2rem, 8.5vw, 7.2rem);
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      h1 span {
+        display: block;
+      }
+
+      .hero-copy {
+        width: min(720px, 100%);
+        margin-bottom: 26px;
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+        font-weight: 700;
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        margin-bottom: 30px;
+        color: #fff6e8;
+        font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+        font-weight: 900;
+      }
+
+      .hero-meta span:not(:last-child)::after {
+        content: "/";
+        margin-left: 14px;
+        color: rgba(255, 246, 232, 0.7);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 50px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 13px 20px;
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .button.primary {
+        background: var(--coral);
+        color: white;
+      }
+
+      .button.secondary {
+        border-color: rgba(255, 255, 255, 0.7);
+        color: white;
+      }
+
+      section {
+        padding: clamp(54px, 8vw, 104px) clamp(20px, 4vw, 56px);
+      }
+
+      .wrap {
+        width: min(1120px, 100%);
+        margin: 0 auto;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr);
+        gap: clamp(34px, 6vw, 78px);
+        align-items: center;
+      }
+
+      h2 {
+        margin-bottom: 18px;
+        font-size: clamp(2rem, 5vw, 4.1rem);
+        line-height: 1.12;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .preview-shell {
+        position: relative;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px;
+        background: #ffffff;
+        box-shadow: var(--shadow);
+      }
+
+      .preview-bar {
+        display: flex;
+        gap: 6px;
+        padding: 0 0 12px;
+      }
+
+      .preview-bar span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--line);
+      }
+
+      .preview-shell img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+      }
+
+      .deliverables {
+        background: var(--mist);
+      }
+
+      .deliver-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .deliver {
+        min-height: 240px;
+        border: 1px solid #d5e5d9;
+        border-radius: 8px;
+        padding: 24px;
+        background: white;
+      }
+
+      .deliver strong {
+        display: block;
+        margin-bottom: 12px;
+        font-size: 1.25rem;
+      }
+
+      .deliver .mark {
+        display: inline-flex;
+        width: 38px;
+        height: 38px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+        border-radius: 50%;
+        background: var(--mint);
+        color: white;
+        font-weight: 900;
+      }
+
+      .process {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--line);
+      }
+
+      .step {
+        min-height: 230px;
+        padding: 26px;
+        background: var(--paper);
+      }
+
+      .step span {
+        display: inline-flex;
+        width: 34px;
+        height: 34px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        border-radius: 50%;
+        background: var(--sun);
+        font-weight: 900;
+      }
+
+      .pricing {
+        background:
+          linear-gradient(90deg, rgba(79, 122, 99, 0.12), rgba(255, 255, 255, 0)),
+          var(--paper);
+      }
+
+      .price-grid {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      .price-box,
+      .scope-box {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: white;
+        padding: clamp(24px, 4vw, 38px);
+      }
+
+      .price {
+        margin: 8px 0 8px;
+        color: var(--ink);
+        font-size: clamp(3.2rem, 7vw, 5.5rem);
+        line-height: 1;
+        font-weight: 950;
+      }
+
+      .price small {
+        font-size: 1.2rem;
+      }
+
+      .scope-list {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .scope-list li {
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .scope-list li::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        margin-top: 0.64em;
+        border-radius: 50%;
+        background: var(--mint-deep);
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--line);
+      }
+
+      .faq {
+        min-height: 190px;
+        padding: 22px;
+        background: #fff;
+      }
+
+      .faq strong {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .final {
+        color: white;
+        background:
+          linear-gradient(90deg, rgba(32, 50, 43, 0.92), rgba(79, 122, 99, 0.82)),
+          url("https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1800&q=82")
+            center / cover;
+      }
+
+      .final-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 0.35fr);
+        gap: 30px;
+        align-items: center;
+      }
+
+      .final-note {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        padding: 22px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(10px);
+      }
+
+      .contact {
+        background: var(--ink);
+        color: white;
+      }
+
+      .contact .wrap {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(280px, 1fr);
+        gap: 28px;
+        align-items: start;
+      }
+
+      .contact-box {
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 8px;
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .contact code {
+        white-space: normal;
+        color: #ffe0b4;
+      }
+
+      footer {
+        padding: 22px clamp(20px, 4vw, 56px);
+        color: var(--muted);
+        background: #f5f7f2;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 900px) {
+        .site-header {
+          position: absolute;
+          align-items: flex-start;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .hero {
+          min-height: 86vh;
+          background-position: 58% center;
+        }
+
+        h1 {
+          max-width: 10ch;
+        }
+
+        .split,
+        .price-grid,
+        .final-inner,
+        .contact .wrap {
+          grid-template-columns: 1fr;
+        }
+
+        .deliver-grid,
+        .process,
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .preview-shell img {
+          aspect-ratio: 4 / 3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" aria-label="サイトヘッダー">
+      <div class="brand">AI告知ページ制作</div>
+      <nav class="nav" aria-label="ページ内ナビゲーション">
+        <a href="#sample">サンプル</a>
+        <a href="#deliverables">内容</a>
+        <a href="#price">料金</a>
+        <a href="#contact">申込</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <h1><span>AI告知ページ</span><span>制作</span></h1>
+          <p class="hero-copy">
+            ヨガ、ピラティス、整体、パーソナルトレーナー向け。体験会や個人サービスの案内文を、1ページ告知HTMLとSNS投稿3本に整えます。
+          </p>
+          <div class="hero-meta" aria-label="サービス条件">
+            <span>初回モニター 3,000円</span>
+            <span>3営業日納品</span>
+            <span>修正1回まで</span>
+          </div>
+          <div class="actions">
+            <a class="button primary" href="#contact">申し込み方法を見る</a>
+            <a class="button secondary" href="#sample">サンプルを見る</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="sample">
+        <div class="wrap split">
+          <div>
+            <h2>短い告知文を、申し込みやすいページへ。</h2>
+            <p class="lead">
+              「初心者向け体験会を開催します」だけでは、参加を迷っている人の不安が残ります。誰向けか、当日の流れ、持ち物、申し込み方法まで整理して、スマホで読める告知ページにします。
+            </p>
+            <div class="actions">
+              <a class="button primary" href="samples/pilates-trial/index.html">完成サンプルを開く</a>
+            </div>
+          </div>
+          <div class="preview-shell" aria-label="制作サンプルのプレビュー">
+            <div class="preview-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <img src="samples/pilates-trial/desktop-preview.png" alt="ピラティス体験会の告知ページ制作サンプル" />
+          </div>
+        </div>
+      </section>
+
+      <section id="deliverables" class="deliverables">
+        <div class="wrap">
+          <h2>お届けするもの</h2>
+          <div class="deliver-grid">
+            <article class="deliver">
+              <span class="mark">1</span>
+              <strong>1ページ告知HTML</strong>
+              <p>体験会、講座、個人サービスの案内を、スマホで読める1ページに整理します。</p>
+            </article>
+            <article class="deliver">
+              <span class="mark">2</span>
+              <strong>SNS投稿3本</strong>
+              <p>共感、内容紹介、締切/募集の3つの切り口で、XやInstagramに使える文章を作ります。</p>
+            </article>
+            <article class="deliver">
+              <span class="mark">3</span>
+              <strong>納品前チェック</strong>
+              <p>Codexで制作し、Claude CodeまたはCodexで計画と納品前チェックを行います。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>ご利用の流れ</h2>
+          <div class="process">
+            <article class="step">
+              <span>1</span>
+              <h3>ヒアリング</h3>
+              <p>フォームに、告知したい内容、日時、料金、申し込み方法、今ある案内文を入力します。</p>
+            </article>
+            <article class="step">
+              <span>2</span>
+              <h3>制作</h3>
+              <p>必要情報がそろってから3営業日以内に、告知ページとSNS投稿を制作します。</p>
+            </article>
+            <article class="step">
+              <span>3</span>
+              <h3>納品・修正</h3>
+              <p>HTML一式とSNS投稿文を納品します。修正は1回まで対応します。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="price" class="pricing">
+        <div class="wrap price-grid">
+          <div class="price-box">
+            <h2>料金</h2>
+            <p>初回モニター価格</p>
+            <div class="price">3,000<small>円</small></div>
+            <p class="lead">通常価格は5,000円。初回だけ、実績づくりとして1名限定で受け付けます。</p>
+          </div>
+          <div class="scope-box">
+            <h2>制作範囲</h2>
+            <ul class="scope-list">
+              <li>1ページ告知HTML</li>
+              <li>SNS投稿3本</li>
+              <li>修正1回</li>
+              <li>納期は必要情報がそろってから3営業日</li>
+              <li>支払いはPayPayまたは銀行振込。入金確認後に制作開始</li>
+              <li>公開作業、予約フォーム、決済機能、画像制作、ロゴ制作、大幅な企画相談は別料金</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>よくある質問</h2>
+          <div class="faq-grid">
+            <article class="faq">
+              <strong>写真やロゴがなくても大丈夫ですか？</strong>
+              <p>大丈夫です。まずは文章と必要情報だけで、シンプルに伝わるページへ整えます。</p>
+            </article>
+            <article class="faq">
+              <strong>公開までお願いできますか？</strong>
+              <p>公開作業は追加3,000円です。初回はHTML一式の納品を基本にします。</p>
+            </article>
+            <article class="faq">
+              <strong>修正は何回できますか？</strong>
+              <p>修正は1回までです。方向性の大幅変更や機能追加は別料金です。</p>
+            </article>
+            <article class="faq">
+              <strong>どんな人向けですか？</strong>
+              <p>体験会、講座、個人サービスの告知文やSNS投稿を整えたい方向けです。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="final">
+        <div class="wrap final-inner">
+          <div>
+            <h2>あなたのレッスンの価値が、伝わる告知に。</h2>
+            <p>
+              まずは初回モニターとして、1名だけ受け付けます。今ある案内文をもとに、告知ページとSNS投稿まで整えます。
+            </p>
+            <div class="actions">
+              <a class="button primary" href="#contact">申し込み方法を見る</a>
+            </div>
+          </div>
+          <div class="final-note">
+            <strong>安心サポート</strong>
+            <p>専門用語を増やすより、参加前の不安を減らす告知に整えます。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="wrap">
+          <div>
+            <h2>申し込み方法</h2>
+            <p>まずはXのDMで「告知ページ制作に興味があります」と送ってください。</p>
+          </div>
+          <div class="contact-box">
+            <p><strong>送る内容</strong></p>
+            <p><code>体験会/サービス名、今ある案内文、希望納期、SNSで使いたい媒体</code></p>
+            <p>その後、Googleフォームをお送りします。内容確認後、PayPayまたは銀行振込で入金確認してから制作開始します。</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>このページは、Codexを使った副業検証用のサービスページです。</footer>
+  </body>
+</html>
